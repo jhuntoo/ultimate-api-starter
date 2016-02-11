@@ -18,13 +18,19 @@ const PATHS = {
 
 module.exports = {
   name: 'server',
-  entry: './server.js',
+  entry: './src/boot.ts',
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['', '.ts']
   },
   module: {
+    preLoaders: [
+      {
+        test: /\.ts$/,
+        loader: "tslint"
+      }
+    ],
     loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel?cacheDirectory' }
+      { test: /\.ts$/, exclude: /node_modules/, loader: 'ts-loader' }
     ]
   },
 
